@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopCart - Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/toast.css">
+</head>
+<body>
+    <div id="toast-container" class="position-fixed top-0 end-0 p-3"></div>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">ShopCart</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="cart.html">Cart <span class="badge bg-primary cart-count">0</span></a>
+                    </li>
+                    <li class="nav-item" id="login-link">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item" id="signup-link">
+                        <a class="nav-link" href="signup.html">Sign Up</a>
+                    </li>
+                    <li class="nav-item d-none" id="logout-link">
+                        <a class="nav-link" href="#" id="logout-button">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-5">
+        <h1 class="mb-4">Your Cart</h1>
+        <div id="cart-container">
+            <!-- Cart will be loaded here dynamically -->
+            <div class="text-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="empty-cart-message" class="text-center d-none">
+            <h3>Your cart is empty</h3>
+            <p>Add some products to your cart.</p>
+            <a href="products.html" class="btn btn-primary">Browse Products</a>
+        </div>
+        
+        <div id="cart-details" class="d-none">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items">
+                        <!-- Cart items will be loaded here -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                            <td id="cart-total">£0.00</td>
+                            <td></td>
+                        </tr>
+                        <tr id="cart-special-offers" class="d-none">
+                            <td colspan="5" class="text-success">
+                                <div id="special-offers-container"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <a href="products.html" class="btn btn-outline-primary">Continue Shopping</a>
+                </div>
+                <div class="col-md-6 text-end">
+                    <button id="checkout-btn" class="btn btn-success">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/api/api_config.js"></script>
+    <script src="../assets/js/api/cart.js"></script>
+    <script src="../assets/js/components/toast.js"></script>
+    <script src="../assets/js/utils/auth-guard.js"></script>
+    <script src="../assets/js/pages/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoggedIn();
+            updateNavigation();
+            loadCart();
+            
+            document.getElementById('checkout-btn').addEventListener('click', function() {
+                checkout();
+            });
+            
+            document.getElementById('logout-button')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                updateNavigation();
+                showToast('Logged out successfully', 'success');
+                setTimeout(() => window.location.href = '../index.html', 1000);
+            });
+        });
+    </script>
+</body>
+</html>

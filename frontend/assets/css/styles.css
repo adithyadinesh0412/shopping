@@ -1,0 +1,122 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #3a86ff !important;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Styles */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+    background-color: #f0f4f8;
+}
+
+/* Product Styles */
+.product-card {
+    height: 100%;
+}
+
+.product-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6c757d;
+}
+
+.product-title {
+    font-weight: bold;
+    color: #343a40;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    color: #3a86ff;
+    font-weight: bold;
+}
+
+.product-special {
+    color: #2dce89;
+    font-size: 0.85rem;
+}
+
+/* Cart Styles */
+.cart-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    background-color: #f0f4f8;
+    border-radius: 5px;
+}
+
+.cart-quantity {
+    width: 60px;
+}
+
+.btn-remove {
+    color: #dc3545;
+    cursor: pointer;
+}
+
+#special-offers-container {
+    font-size: 0.9rem;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #3a86ff;
+    border-color: #3a86ff;
+}
+
+.btn-primary:hover {
+    background-color: #2972e0;
+    border-color: #2972e0;
+}
+
+.btn-success {
+    background-color: #2dce89;
+    border-color: #2dce89;
+}
+
+.btn-success:hover {
+    background-color: #26b878;
+    border-color: #26b878;
+}
+
+/* Form Styles */
+.form-control:focus {
+    border-color: #3a86ff;
+    box-shadow: 0 0 0 0.25rem rgba(58, 134, 255, 0.25);
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+    .jumbotron {
+        padding: 2rem 1rem;
+    }
+    
+    .card {
+        margin-bottom: 15px;
+    }
+}
